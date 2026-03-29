@@ -1,15 +1,33 @@
 import Button from "components/Button/Button";
 
 import "./styles.css";
-import { type FeedbackProps } from "./types";
 
-function Feedback({
-  like,
-  dislike,
-  onDislike,
-  onLike,
-  resetResults,
-}: FeedbackProps) {
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import {
+  feedbackSliceActions,
+  feedbackSliceSelectors,
+} from "../../store/Redux/FeedbackSlice/feedbackSlice.ts";
+
+function Feedback() {
+  const like = useAppSelector(feedbackSliceSelectors.like);
+  const dislike = useAppSelector(feedbackSliceSelectors.dislike);
+  const dispatch = useAppDispatch();
+
+  const onLike = () => {
+    const action = feedbackSliceActions.onLike();
+    dispatch(action);
+  };
+
+  const onDislike = () => {
+    const action = feedbackSliceActions.onDislike();
+    dispatch(action);
+  };
+
+  const resetResults = () => {
+    const action = feedbackSliceActions.resetResults();
+    dispatch(action);
+  };
+
   return (
     <div className="feedback-wrapper">
       <div className="feedback-control">
