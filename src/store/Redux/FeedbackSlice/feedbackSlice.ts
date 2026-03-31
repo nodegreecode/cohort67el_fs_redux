@@ -1,6 +1,11 @@
 import { createAppSlice } from "store/createAppSlice";
 
-const initialState = { like: 0, dislike: 0 };
+type FeedbackInitialState = {
+  like: number;
+  dislike: number;
+};
+
+const initialState: FeedbackInitialState = { like: 0, dislike: 0 };
 
 export const feedbackSlice = createAppSlice({
   name: "FEEDBACK",
@@ -16,10 +21,13 @@ export const feedbackSlice = createAppSlice({
       sliceState.like = 0;
       sliceState.dislike = 0;
     },
+    reset() {
+      return initialState;
+    },
   },
   selectors: {
-    like: sliceState => sliceState.like,
-    dislike: sliceState => sliceState.dislike,
+    like: (sliceState: FeedbackInitialState) => sliceState.like,
+    dislike: (sliceState: FeedbackInitialState) => sliceState.dislike,
   },
 });
 

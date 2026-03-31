@@ -1,17 +1,15 @@
 import Button from "components/Button/Button";
-
 import "./styles.css";
-
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import {
   feedbackSliceActions,
   feedbackSliceSelectors,
-} from "../../store/Redux/FeedbackSlice/feedbackSlice.ts";
+} from "store/Redux/FeedbackSlice/feedbackSlice.ts";
 
 function Feedback() {
+  const dispatch = useAppDispatch();
   const like = useAppSelector(feedbackSliceSelectors.like);
   const dislike = useAppSelector(feedbackSliceSelectors.dislike);
-  const dispatch = useAppDispatch();
 
   const onLike = () => {
     const action = feedbackSliceActions.onLike();
@@ -24,7 +22,7 @@ function Feedback() {
   };
 
   const resetResults = () => {
-    const action = feedbackSliceActions.resetResults();
+    const action = feedbackSliceActions.reset();
     dispatch(action);
   };
 

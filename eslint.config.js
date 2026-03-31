@@ -1,12 +1,12 @@
-import js from "@eslint/js"
-import vitestPlugin from "@vitest/eslint-plugin"
-import prettierConfig from "eslint-config-prettier/flat"
-import reactPlugin from "eslint-plugin-react"
-import reactHooksPlugin from "eslint-plugin-react-hooks"
-import globals from "globals"
-import { config, configs } from "typescript-eslint"
+import js from "@eslint/js";
+import vitestPlugin from "@vitest/eslint-plugin";
+import prettierConfig from "eslint-config-prettier/flat";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import globals from "globals";
+import { configs } from "typescript-eslint";
 
-const eslintConfig = config(
+export default [
   {
     name: "global-ignores",
     ignores: [
@@ -25,8 +25,8 @@ const eslintConfig = config(
     name: `${js.meta.name}/recommended`,
     ...js.configs.recommended,
   },
-  configs.strictTypeChecked,
-  configs.stylisticTypeChecked,
+  ...configs.strictTypeChecked,
+  ...configs.stylisticTypeChecked,
   vitestPlugin.configs.recommended,
   {
     name: "eslint-plugin-react/jsx-runtime",
@@ -53,7 +53,7 @@ const eslintConfig = config(
     },
     rules: {
       "no-undef": [0],
-      "@typescript-eslint/consistent-type-definitions": [2, "type"],
+      "@typescript-eslint/consistent-type-definitions": [2, "interface"],
       "@typescript-eslint/consistent-type-imports": [
         2,
         {
@@ -77,8 +77,5 @@ const eslintConfig = config(
       ],
     },
   },
-
   prettierConfig,
-)
-
-export default eslintConfig
+];
