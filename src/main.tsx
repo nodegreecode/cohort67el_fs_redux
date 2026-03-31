@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
+import GlobalStyles from "styles/GlobalStyles.tsx";
 import App from "./App";
 import { store } from "./store/store.ts";
 
@@ -8,6 +9,7 @@ if (container) {
   const root = createRoot(container);
   root.render(
     <Provider store={store}>
+      <GlobalStyles />
       <App />
     </Provider>,
   );

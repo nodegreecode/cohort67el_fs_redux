@@ -1,7 +1,7 @@
 import Button from "components/Button/Button";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import {
-  couterSliceActions,
+  counterSliceActions,
   counterSliceSelectors,
 } from "store/Redux/CounterSlice/counterSlice.ts";
 import "./styles.css";
@@ -11,23 +11,40 @@ function Counter() {
   const count = useAppSelector(counterSliceSelectors.count);
 
   const onPlus = () => {
-    const action = couterSliceActions.plus();
+    const action = counterSliceActions.plus();
     dispatch(action);
   };
   const onMinus = () => {
-    const action = couterSliceActions.minus();
+    const action = counterSliceActions.minus();
     dispatch(action);
   };
+
+  const onDivide = () => {
+    dispatch(counterSliceActions.divide(2));
+  };
+
+  const onMultiply = () => {
+    dispatch(counterSliceActions.multiply(3));
+  };
+
   return (
-    <div className="counter_wrapper">
-      <div className="button_control">
-        <Button name="-" onClick={onMinus} />
+    <section className="PageWrapper">
+      <div className="counter_wrapper">
+        <div className="button_control">
+          <Button name="/" onClick={onDivide} />
+        </div>
+        <div className="button_control">
+          <Button name="-" onClick={onMinus} />
+        </div>
+        <p className="count">{count}</p>
+        <div className="button_control">
+          <Button name="+" onClick={onPlus} />
+        </div>
+        <div className="button_control">
+          <Button name="*" onClick={onMultiply} />
+        </div>
       </div>
-      <p className="count">{count}</p>
-      <div className="button_control">
-        <Button name="+" onClick={onPlus} />
-      </div>
-    </div>
+    </section>
   );
 }
 
